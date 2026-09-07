@@ -1,0 +1,24 @@
+function LoginGate({ onUnlock }) {
+  const { Input, Button } = window.StrandAthleticsClubDesignSystem_f49d47;
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+  const submit = (e) => {
+    e.preventDefault();
+    if (password === 'strandac2026') { setError(''); onUnlock(); }
+    else setError('Incorrect password. Try the club shared password.');
+  };
+  return (
+    <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'var(--grey-050)' }}>
+      <form onSubmit={submit} style={{ background:'#fff', borderRadius:'var(--radius-lg)', boxShadow:'var(--shadow-md)', padding:40, width:360, display:'flex', flexDirection:'column', gap:16 }}>
+        <img src="../../assets/logos/strand-ac-logo-horizontal.png" alt="Strand Athletics Club" style={{ height:32, width:'auto', alignSelf:'flex-start', marginBottom:8 }} />
+        <h1 style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:22, color:'var(--navy-900)', margin:0 }}>Time Trial Admin</h1>
+        <p style={{ margin:0, fontSize:14, color:'var(--grey-600)' }}>Enter the club shared password to manage time trial results.</p>
+        <Input label="Password" type="password" placeholder="••••••••" value={password} onChange={e=>setPassword(e.target.value)} />
+        {error && <div style={{ fontSize:13, color:'var(--coral-500)' }}>{error}</div>}
+        <Button variant="primary" size="md" type="submit">Log In</Button>
+        <p style={{ margin:0, fontSize:12, color:'var(--grey-400)' }}>Prototype only — password is "strandac2026".</p>
+      </form>
+    </div>
+  );
+}
+window.LoginGate = LoginGate;

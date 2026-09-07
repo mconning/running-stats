@@ -1,0 +1,43 @@
+// Mock published time-trial results — shape mirrors what a GET /races/{race_date}/results
+// endpoint should return once wired to running-club-metrics. Replace entirely with a real fetch.
+window.MockResultsData = {
+  event: { series_name: 'Winter Series', week: 32, year: 2026, race_date: '2026-08-04' },
+  entries: [
+    { position: 1, name: 'Lisa Alexander', gender: 'F', time: '0:24:41', is_sb: true, distance: '5KM' },
+    { position: 2, name: 'Sarienne Fourie', gender: 'F', time: '0:24:50', is_sb: false, distance: '5KM' },
+    { position: 2, name: 'Michelle Van Der Watt', gender: 'F', time: '0:24:50', is_sb: false, distance: '5KM' },
+    { position: 4, name: 'Pretty Bvute', gender: 'F', time: '0:26:45', is_sb: false, distance: '5KM' },
+    { position: 5, name: 'Machrista Albertyn', gender: 'F', time: '0:27:13', is_sb: false, distance: '5KM' },
+    { position: 6, name: 'Anene Wichers', gender: 'F', time: '0:29:29', is_sb: false, distance: '5KM' },
+    { position: 7, name: 'Angelique Smit', gender: 'F', time: '0:31:07', is_sb: false, distance: '5KM' },
+    { position: 8, name: 'Robyn Alexander', gender: 'F', time: '0:32:19', is_sb: true, distance: '5KM' },
+    { position: 8, name: 'Jordyn Bosch', gender: 'F', time: '0:32:19', is_sb: true, distance: '5KM' },
+    { position: 8, name: 'Rene Landmann', gender: 'F', time: '0:32:19', is_sb: false, distance: '5KM' },
+    { position: 11, name: 'Anette Botha', gender: 'F', time: '0:41:22', is_sb: false, distance: '5KM' },
+    { position: 12, name: 'Sharni Izaks', gender: 'F', time: '0:45:52', is_sb: false, distance: '5KM' },
+    { position: 13, name: 'Wilna Eybers', gender: 'F', time: '0:46:12', is_sb: false, distance: '5KM' },
+    { position: 13, name: 'Laura Taylor', gender: 'F', time: '0:46:12', is_sb: false, distance: '5KM' },
+    { position: 13, name: 'Marietjie De Vries', gender: 'F', time: '0:46:12', is_sb: false, distance: '5KM' },
+    { position: 1, name: 'Steven George', gender: 'M', time: '0:16:00', is_sb: false, distance: '5KM' },
+    { position: 2, name: 'Hein De Villiers', gender: 'M', time: '0:17:30', is_sb: false, distance: '5KM' },
+    { position: 3, name: 'Estiaan Diener', gender: 'M', time: '0:19:45', is_sb: false, distance: '5KM' },
+    { position: 4, name: 'Charles Pretorius', gender: 'M', time: '0:20:32', is_sb: false, distance: '5KM' },
+    { position: 5, name: 'Jacques Grimbeek', gender: 'M', time: '0:21:28', is_sb: false, distance: '5KM' },
+    { position: 6, name: 'Sandise Hungana', gender: 'M', time: '0:21:43', is_sb: false, distance: '5KM' },
+    { position: 7, name: 'Christopher Steven', gender: 'M', time: '0:22:27', is_sb: true, distance: '5KM' },
+    { position: 8, name: 'Emile Van Zyl', gender: 'M', time: '0:24:37', is_sb: true, distance: '5KM' },
+    { position: 9, name: 'Jean Paul', gender: 'M', time: '0:24:59', is_sb: false, distance: '5KM' },
+    { position: 10, name: 'Marius Du Toit', gender: 'M', time: '0:25:20', is_sb: true, distance: '5KM' },
+    { position: 11, name: 'Barry Muller', gender: 'M', time: '0:26:30', is_sb: false, distance: '5KM' },
+    { position: 1, name: 'Anette Botha', gender: 'F', time: '0:41:22', is_sb: false, distance: '10KM' },
+    { position: 2, name: 'Adel Smit', gender: 'F', time: '0:44:05', is_sb: true, distance: '10KM' },
+    { position: 3, name: 'Aletta van Zyl', gender: 'F', time: '0:47:51', is_sb: false, distance: '10KM' },
+    { position: 4, name: 'Andisiwe Sigaba', gender: 'F', time: '0:51:20', is_sb: false, distance: '10KM' },
+    { position: 5, name: 'Alette Van Vuuren', gender: 'F', time: '0:53:44', is_sb: true, distance: '10KM' },
+    { position: 1, name: 'Andre Stubbe', gender: 'M', time: '0:36:12', is_sb: false, distance: '10KM' },
+    { position: 2, name: 'Alten Nortje', gender: 'M', time: '0:38:51', is_sb: false, distance: '10KM' },
+    { position: 3, name: 'Alex Rymill', gender: 'M', time: '0:39:47', is_sb: true, distance: '10KM' },
+    { position: 4, name: 'Albert Kasselman', gender: 'M', time: '0:42:03', is_sb: false, distance: '10KM' },
+    { position: 5, name: 'Andries Dippenaar', gender: 'M', time: '0:44:18', is_sb: false, distance: '10KM' }
+  ]
+};

@@ -1,0 +1,207 @@
+const STATUS_TONE = { draft: 'outline', extracting: 'sun', processing: 'sun', published: 'teal', extraction_failed: 'coral', processing_failed: 'coral' };
+
+function StatusBadge({ status }) {
+  const { Badge } = window.StrandAthleticsClubDesignSystem_f49d47;
+  return <Badge tone={STATUS_TONE[status] || 'outline'}>{status.replace(/_/g, ' ')}</Badge>;
+}
+
+function timeToSeconds(t) {
+  if (!t) return Infinity;
+  const parts = t.split(':').map(Number);
+  if (parts.some(isNaN)) return Infinity;
+  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  if (parts.length === 2) return parts[0] * 60 + parts[1];
+  return parts[0];
+}
+
+function sortEntries(entries) {
+  const genderRank = g => g === 'M' ? 0 : g === 'F' ? 1 : 2;
+  return [...entries].sort((a, b) => {
+    const d = genderRank(a.gender) - genderRank(b.gender);
+    return d !== 0 ? d : timeToSeconds(a.time) - timeToSeconds(b.time);
+  });
+}
+
+function EntryRow({ entry, onSave, onRemove }) {
+  const { Badge, Button } = window.StrandAthleticsClubDesignSystem_f49d47;
+  const [draft, setDraft] = React.useState(entry);
+  React.useEffect(() => setDraft(entry), [entry.entry_id]);
+  const cellStyle = { padding: '8px 8px', borderTop: '1px solid var(--grey-100)' };
+  const inputStyle = { font: 'inherit', fontSize: 14, padding: '6px 8px', borderRadius: 'var(--radius-sm)', border: '1.5px solid var(--grey-200)', width: '100%', boxSizing: 'border-box' };
+  return (
+    <tr style={{ background: entry.flag_reason ? '#FFF8E5' : 'transparent' }}>
+      <td style={cellStyle}><input style={inputStyle} value={draft.name} onChange={e => setDraft({ ...draft, name: e.target.value })} /></td>
+      <td style={cellStyle}>
+        <select style={inputStyle} value={draft.gender} onChange={e => setDraft({ ...draft, gender: e.target.value })}>
+          <option value="M">M</option><option value="F">F</option>
+        </select>
+      </td>
+      <td style={cellStyle}><input style={inputStyle} value={draft.time} onChange={e => setDraft({ ...draft, time: e.target.value })} placeholder="H:MM:SS" /></td>
+      <td style={cellStyle}>
+        <select style={inputStyle} value={draft.distance} onChange={e => setDraft({ ...draft, distance: e.target.value })}>
+          <option value="5KM">5KM</option><option value="10KM">10KM</option>
+        </select>
+      </td>
+      <td style={{ ...cellStyle, color: 'var(--grey-600)' }}>{entry.source}</td>
+      <td style={cellStyle}>{entry.flag_reason ? <Badge tone="coral">{entry.flag_reason.replace(/_/g, ' ')}</Badge> : <span style={{ color: 'var(--grey-400)' }}>—</span>}</td>
+      <td style={{ ...cellStyle, textAlign: 'right', whiteSpace: 'nowrap' }}>
+        <Button variant="ghost" size="sm" onClick={() => onSave({ ...draft, flag_reason: null })}>Save</Button>
+        <Button variant="ghost" size="sm" onClick={() => onRemove(entry.entry_id)}>Remove</Button>
+      </td>
+    </tr>
+  );
+}
+
+function TimeTrialAdmin() {
+  const { Button, Input, Select } = window.StrandAthleticsClubDesignSystem_f49d47;
+  const [races, setRaces] = React.useState(window.MockData.INITIAL_RACES);
+  const [activeDate, setActiveDate] = React.useState(null);
+  const [newDate, setNewDate] = React.useState('');
+  const [entries, setEntries] = React.useState([]);
+  const [photoName, setPhotoName] = React.useState(null);
+  const [form, setForm] = React.useState({ name: '', gender: 'M', time: '', distance: '5KM' });
+
+  const active = races.find(r => r.race_date === activeDate);
+  const anyFlagged = entries.some(e => e.flag_reason);
+  const processDisabled = !active || entries.length === 0 || anyFlagged || active.status === 'extracting' || active.status === 'processing';
+
+  const setActiveStatus = (status) => setRaces(rs => rs.map(r => r.race_date === activeDate ? { ...r, status } : r));
+
+  const createRace = () => {
+    if (!newDate) return;
+    setRaces([{ race_date: newDate, series_name: 'Winter Series', status: 'draft' }, ...races]);
+    setActiveDate(newDate);
+    setEntries([]);
+    setPhotoName(null);
+    setNewDate('');
+  };
+
+  const openRace = (date) => { setActiveDate(date); setEntries([]); setPhotoName(null); };
+
+  const onPhoto = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setPhotoName(file.name);
+    setActiveStatus('extracting');
+    setTimeout(() => {
+      setEntries(window.MockData.CANNED_EXTRACTION.map(en => ({ ...en, entry_id: en.entry_id + '-' + Date.now() })));
+      setActiveStatus('draft');
+    }, 1200);
+  };
+
+  const addEntry = () => {
+    if (!form.name || !form.time) return;
+    setEntries([...entries, { entry_id: 'm' + Date.now(), ...form, source: 'Manual', flag_reason: null }]);
+    setForm({ name: '', gender: 'M', time: '', distance: '5KM' });
+  };
+
+  const saveEntry = (updated) => setEntries(entries.map(e => e.entry_id === updated.entry_id ? updated : e));
+  const removeEntry = (id) => setEntries(entries.filter(e => e.entry_id !== id));
+
+  const startProcessing = () => {
+    setActiveStatus('processing');
+    setTimeout(() => setActiveStatus('published'), 1500);
+  };
+
+  return (
+    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 24px 64px', display: 'flex', flexDirection: 'column', gap: 32 }}>
+      <div>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 28, color: 'var(--navy-900)', margin: '0 0 4px' }}>Review Time Trial Results</h1>
+        <p style={{ margin: 0, color: 'var(--grey-600)', fontSize: 14 }}>Upload a finish-line photo, review the Mobii-extracted times, then publish.</p>
+      </div>
+
+      <div style={{ background: '#fff', border: '1px solid var(--grey-100)', borderRadius: 'var(--radius-lg)', padding: 24 }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, color: 'var(--navy-900)', marginBottom: 16 }}>Races</div>
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginBottom: 18 }}>
+          <div style={{ maxWidth: 220 }}><Input label="New race date" type="date" value={newDate} onChange={e => setNewDate(e.target.value)} /></div>
+          <Button variant="secondary" size="md" onClick={createRace}>Create race (no photo)</Button>
+        </div>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+          <thead>
+            <tr style={{ textAlign: 'left', color: 'var(--grey-600)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: 'var(--ls-eyebrow)' }}>
+              <th style={{ padding: '8px 10px', borderBottom: '2px solid var(--grey-100)' }}>Date</th>
+              <th style={{ padding: '8px 10px', borderBottom: '2px solid var(--grey-100)' }}>Series</th>
+              <th style={{ padding: '8px 10px', borderBottom: '2px solid var(--grey-100)' }}>Status</th>
+              <th style={{ padding: '8px 10px', borderBottom: '2px solid var(--grey-100)' }}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {races.map(r => (
+              <tr key={r.race_date} style={{ background: r.race_date === activeDate ? 'var(--grey-050)' : 'transparent', cursor: 'pointer' }} onClick={() => openRace(r.race_date)}>
+                <td style={{ padding: '10px 10px', borderBottom: '1px solid var(--grey-100)', color: 'var(--ink-900)' }}>{r.race_date}</td>
+                <td style={{ padding: '10px 10px', borderBottom: '1px solid var(--grey-100)', color: 'var(--ink-900)' }}>{r.series_name}</td>
+                <td style={{ padding: '10px 10px', borderBottom: '1px solid var(--grey-100)' }}><StatusBadge status={r.status} /></td>
+                <td style={{ padding: '10px 10px', borderBottom: '1px solid var(--grey-100)', textAlign: 'right' }}>
+                  <Button variant="ghost" size="sm" onClick={(e) => { e.stopPropagation(); openRace(r.race_date); }}>Open</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {active && (
+        <div style={{ background: '#fff', border: '1px solid var(--grey-100)', borderRadius: 'var(--radius-lg)', padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--navy-900)', margin: 0 }}>{active.race_date} — {active.series_name}</h2>
+            <StatusBadge status={active.status} />
+          </div>
+
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 6 }}>Finish-line photo</div>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 12, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: 16, cursor: 'pointer', background: 'var(--grey-050)' }}>
+              <input type="file" accept="image/*" onChange={onPhoto} style={{ display: 'none' }} />
+              <Button variant="secondary" size="sm">Choose photo</Button>
+              <span style={{ fontSize: 13, color: 'var(--grey-600)' }}>{photoName || 'No photo uploaded yet'}</span>
+            </label>
+            {active.status === 'extracting' && <p style={{ fontSize: 13, color: 'var(--teal-500)', fontWeight: 600, marginTop: 8 }}>Extracting times from photo…</p>}
+          </div>
+
+          {entries.length > 0 && (
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>
+                Entries {anyFlagged && <span style={{ color: 'var(--coral-500)', fontWeight: 700 }}>— resolve flags before processing</span>}
+              </div>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+                <thead>
+                  <tr style={{ textAlign: 'left', color: 'var(--grey-600)', fontSize: 12, textTransform: 'uppercase', letterSpacing: 'var(--ls-eyebrow)', fontFamily: 'var(--font-display)', fontWeight: 700 }}>
+                    <th style={{ padding: '6px 8px' }}>Name</th><th style={{ padding: '6px 8px' }}>Gender</th><th style={{ padding: '6px 8px' }}>Time</th><th style={{ padding: '6px 8px' }}>Distance</th><th style={{ padding: '6px 8px' }}>Source</th><th style={{ padding: '6px 8px' }}>Flag</th><th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortEntries(entries).map(en => (
+                    <EntryRow key={en.entry_id} entry={en} onSave={saveEntry} onRemove={removeEntry} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>Add entry</div>
+            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-end', flexWrap: 'wrap' }}>
+              <div style={{ width: 200 }}>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-body)' }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink-900)' }}>Name</span>
+                  <input list="rosterNames" style={{ font: 'inherit', fontSize: 16, padding: '12px 14px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--grey-200)' }} placeholder="Runner name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                  <datalist id="rosterNames">{window.MockData.ROSTER.map(n => <option key={n} value={n} />)}</datalist>
+                </label>
+              </div>
+              <div style={{ width: 100 }}><Select label="Gender" options={['M', 'F']} value={form.gender} onChange={e => setForm({ ...form, gender: e.target.value })} /></div>
+              <div style={{ width: 110 }}><Input label="Time" placeholder="H:MM:SS" value={form.time} onChange={e => setForm({ ...form, time: e.target.value })} /></div>
+              <div style={{ width: 120 }}><Select label="Distance" options={['5KM', '10KM']} value={form.distance} onChange={e => setForm({ ...form, distance: e.target.value })} /></div>
+              <Button variant="secondary" size="md" onClick={addEntry}>Add</Button>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', borderTop: '1px solid var(--grey-100)', paddingTop: 20 }}>
+            <Button variant="primary" size="md" disabled={processDisabled} onClick={startProcessing}>Start processing</Button>
+            {active.status === 'processing' && <span style={{ fontSize: 14, color: 'var(--teal-500)', fontWeight: 600 }}>Processing…</span>}
+            {active.status === 'published' && <span style={{ fontSize: 14, color: 'var(--leaf-500)', fontWeight: 600 }}>Published — results are live.</span>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+window.TimeTrialAdmin = TimeTrialAdmin;

@@ -1,0 +1,80 @@
+// Public time-trial results page — combined "Bold Stat Board" (C) + side-by-side gender cards (B).
+// Renders window.MockResultsData; swap for a real fetch of GET /races/{race_date}/results.
+function fmtTime(t, isSb) {
+  return t.replace(/^0:/, '') + (isSb ? ' (SB)' : '');
+}
+
+function GenderCard({ title, accent, rows }) {
+  return (
+    <div style={{ flex: 1, minWidth: 0, background: '#fff', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
+      <div style={{ background: accent, padding: '14px 20px', fontFamily: 'var(--font-display)', fontWeight: 800, color: '#fff', fontSize: 'var(--fs-h3)' }}>{title}</div>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <tbody>
+          {rows.map((r, i) => {
+            const podium = r.position <= 3;
+            const bg = podium ? (r.position === 1 ? 'var(--sun-400)' : 'var(--teal-100)') : (i % 2 === 0 ? '#fff' : 'var(--grey-050)');
+            return (
+              <tr key={r.name + r.position} style={{ background: bg }}>
+                <td style={{ padding: '10px 16px', width: 36, fontWeight: podium ? 900 : 400, color: podium ? 'var(--navy-900)' : 'var(--grey-600)' }}>{r.position}</td>
+                <td style={{ padding: '10px 16px', fontWeight: podium ? 800 : 400, color: podium ? 'var(--navy-900)' : 'var(--ink-900)' }}>{r.name}</td>
+                <td style={{ padding: '10px 16px', textAlign: 'right', fontWeight: podium ? 800 : 400, color: podium ? 'var(--navy-900)' : 'var(--grey-600)', whiteSpace: 'nowrap' }}>{fmtTime(r.time, r.is_sb)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function RouteSection({ route, entries }) {
+  const women = entries.filter(e => e.gender === 'F').sort((a, b) => a.position - b.position);
+  const men = entries.filter(e => e.gender === 'M').sort((a, b) => a.position - b.position);
+  return (
+    <div style={{ marginBottom: 40 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+        <div style={{ width: 6, height: 22, background: 'var(--navy-900)', borderRadius: 3 }} />
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--fs-h2)', fontWeight: 800, color: 'var(--navy-900)' }}>{route} Route</div>
+      </div>
+      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        <GenderCard title="Women" accent="var(--navy-700)" rows={women} />
+        <GenderCard title="Men" accent="var(--teal-500)" rows={men} />
+      </div>
+    </div>
+  );
+}
+
+function TimeTrialResultsPage() {
+  const { event, entries } = window.MockResultsData;
+  const routes = Array.from(new Set(entries.map(e => e.distance)));
+
+  return (
+    <div style={{ maxWidth: 980, margin: '40px auto', background: 'var(--grey-050)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--navy-900)', padding: '40px 44px 32px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', right: -40, top: -40, width: 220, height: 220, borderRadius: '50%', background: 'var(--teal-500)', opacity: 0.18 }} />
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 800, letterSpacing: 'var(--ls-eyebrow)', textTransform: 'uppercase', color: 'var(--sun-400)' }}>Strand Athletics Club</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--fs-display-md)', fontWeight: 800, color: '#fff', marginTop: 6 }}>
+              Time Trial — Week {event.week}
+            </div>
+            <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+              {routes.map(r => (
+                <span key={r} style={{ display: 'inline-block', padding: '3px 10px', borderRadius: 'var(--radius-pill)', fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', background: 'rgba(255,255,255,0.12)', color: '#fff' }}>{r} Route</span>
+              ))}
+              <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: 'var(--radius-pill)', fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', background: 'rgba(255,255,255,0.12)', color: '#fff' }}>{event.race_date}</span>
+            </div>
+          </div>
+          <img src="../../assets/logos/strand-ac-logo-round.png" alt="Strand Athletics Club" style={{ width: 96, height: 96, borderRadius: '50%', background: '#fff', padding: 6 }} />
+        </div>
+      </div>
+
+      <div style={{ padding: '32px 44px 44px' }}>
+        {routes.map(route => (
+          <RouteSection key={route} route={route} entries={entries.filter(e => e.distance === route)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+window.TimeTrialResultsPage = TimeTrialResultsPage;

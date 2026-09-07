@@ -1,0 +1,29 @@
+window.MockData = {};
+window.MockData.ROSTER = ['Ade Bester','Adel Smit','Adri Smith','Albert Kasselman','Aletta Pietersen','Aletta van Zyl','Alette Van Vuuren','Alex Rymill','Alten Nortje','Aluta Ngantweni','Andisiwe Sigaba','Andre Stubbe','Andries Dippenaar','Anesu Muusha','Anette Botha','Angelique Smit'];
+
+window.MockData.INITIAL_RACES = [
+  { race_date: '2026-08-11', series_name: 'Winter Series', status: 'published' },
+  { race_date: '2026-08-18', series_name: 'Winter Series', status: 'published' },
+  { race_date: '2026-08-25', series_name: 'Winter Series', status: 'draft' }
+];
+
+window.MockData.CANNED_EXTRACTION = [
+  { entry_id: 'e1', name: 'Andre Stubbe', gender: 'M', time: '0:17:42', distance: '5KM', source: 'Mobii', flag_reason: null },
+  { entry_id: 'e2', name: 'Adel Smit', gender: 'F', time: '0:19:05', distance: '5KM', source: 'Mobii', flag_reason: null },
+  { entry_id: 'e3', name: 'Alten Nortje', gender: 'M', time: '0:38:51', distance: '10KM', source: 'Mobii', flag_reason: 'unmatched_name' },
+  { entry_id: 'e4', name: 'Anette Botha', gender: 'F', time: '0:41:12', distance: '10KM', source: 'Mobii', flag_reason: null },
+  { entry_id: 'e5', name: 'Alex Rymill', gender: 'M', time: '0:18:30', distance: '5KM', source: 'Mobii', flag_reason: 'low_confidence' }
+];
+
+
+// mock rows shaped like a national race-timing results feed (finishlineinsights.com)
+window.MockData.EXTERNAL_RESULTS = [
+  { race: 'Strand Beach Half Marathon', date: '2026-08-30', bib: '1042', name: 'Andre Stubbe', club: 'Strand Athletics Club', category: 'M40-49', distance: '21KM', time: '1:32:14', position: 4 },
+  { race: 'Strand Beach Half Marathon', date: '2026-08-30', bib: '2210', name: 'Adel Smit', club: 'Strand Athletics Club', category: 'F30-39', distance: '21KM', time: '1:48:02', position: 11 },
+  { race: 'Strand Beach Half Marathon', date: '2026-08-30', bib: '3355', name: 'Kyle Fortune', club: 'Helderberg Runners', category: 'M20-29', distance: '21KM', time: '1:29:47', position: 2 },
+  { race: 'Gordon\u2019s Bay 10K', date: '2026-08-16', bib: '118', name: 'Alten Nortje', club: 'Strand Athletics Club', category: 'M50-59', distance: '10KM', time: '44:18', position: 7 },
+  { race: 'Gordon\u2019s Bay 10K', date: '2026-08-16', bib: '204', name: 'Anette Botha', club: 'Strand Athletics Club', category: 'F18-29', distance: '10KM', time: '41:55', position: 3 },
+  { race: 'Gordon\u2019s Bay 10K', date: '2026-08-16', bib: '341', name: 'Zanele Khumalo', club: 'Bellville Road Runners', category: 'F30-39', distance: '10KM', time: '45:02', position: 9 },
+  { race: 'Cape Town Marathon', date: '2026-09-20', bib: '9021', name: 'Alex Rymill', club: 'Strand Athletics Club', category: 'M18-29', distance: '42KM', time: '3:12:44', position: 58 },
+  { race: 'Cape Town Marathon', date: '2026-09-20', bib: '9403', name: 'Andisiwe Sigaba', club: 'Strand Athletics Club', category: 'F40-49', distance: '42KM', time: '3:45:19', position: 112 }
+];

@@ -1,0 +1,22 @@
+function TimeTrialApp() {
+  const { Button } = window.StrandAthleticsClubDesignSystem_f49d47;
+  const [unlocked, setUnlocked] = React.useState(false);
+  const [page, setPage] = React.useState('admin');
+
+  if (!unlocked) return <LoginGate onUnlock={() => setUnlocked(true)} />;
+
+  return (
+    <React.Fragment>
+      <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 32px', borderBottom: '1px solid var(--grey-100)' }}>
+        <img src="../../assets/logos/strand-ac-logo-horizontal.png" alt="Strand Athletics Club" style={{ height: 30, width: 'auto' }} />
+        <nav style={{ display: 'flex', gap: 6 }}>
+          <Button variant={page === 'admin' ? 'primary' : 'ghost'} size="sm" onClick={() => setPage('admin')}>Time Trial Admin</Button>
+          <Button variant={page === 'results' ? 'primary' : 'ghost'} size="sm" onClick={() => setPage('results')}>Club Results</Button>
+        </nav>
+        <Button variant="ghost" size="sm" onClick={() => setUnlocked(false)}>Log Out</Button>
+      </header>
+      {page === 'admin' ? <TimeTrialAdmin /> : <RaceResults />}
+    </React.Fragment>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<TimeTrialApp />);
