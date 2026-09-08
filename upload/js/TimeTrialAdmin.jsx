@@ -64,6 +64,8 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
   const [statusMessage, setStatusMessage] = React.useState('');
   const [photoName, setPhotoName] = React.useState(null);
   const pollTimerRef = React.useRef(null);
+  const newRacePhotoInputRef = React.useRef(null);
+  const photoInputRef = React.useRef(null);
   // pollUntilSettled's setInterval callback is created once per call and
   // keeps running for minutes - reading activeDate directly would close
   // over whatever value it had at that moment, never seeing later updates
@@ -279,11 +281,11 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginBottom: 18, flexWrap: 'wrap' }}>
           <div style={{ maxWidth: 220 }}><Input label="New race date" type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} /></div>
           <Button variant="secondary" size="md" onClick={createRace}>Create race (no photo)</Button>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 10, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: '10px 14px', cursor: 'pointer', background: 'var(--grey-050)' }}>
-            <input type="file" accept="image/*" onChange={onNewRacePhoto} style={{ display: 'none' }} />
-            <Button variant="secondary" size="md">Or upload a finish-line photo</Button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: '10px 14px', background: 'var(--grey-050)' }}>
+            <input ref={newRacePhotoInputRef} type="file" accept="image/*" onChange={onNewRacePhoto} style={{ display: 'none' }} />
+            <Button variant="secondary" size="md" onClick={() => newRacePhotoInputRef.current.click()}>Or upload a finish-line photo</Button>
             <span style={{ fontSize: 13, color: 'var(--grey-600)' }}>for the date above</span>
-          </label>
+          </div>
         </div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
           <thead>
@@ -325,11 +327,11 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
 
           <div>
             <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 6 }}>Finish-line photo</div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 12, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: 16, cursor: 'pointer', background: 'var(--grey-050)' }}>
-              <input type="file" accept="image/*" onChange={onPhoto} style={{ display: 'none' }} />
-              <Button variant="secondary" size="sm">Choose photo</Button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: 16, background: 'var(--grey-050)' }}>
+              <input ref={photoInputRef} type="file" accept="image/*" onChange={onPhoto} style={{ display: 'none' }} />
+              <Button variant="secondary" size="sm" onClick={() => photoInputRef.current.click()}>Choose photo</Button>
               <span style={{ fontSize: 13, color: 'var(--grey-600)' }}>{photoName || active.photo_key || 'No photo uploaded yet'}</span>
-            </label>
+            </div>
             {active.status === 'extracting' && <p style={{ fontSize: 13, color: 'var(--teal-500)', fontWeight: 600, marginTop: 8 }}>Extracting times…</p>}
           </div>
 
