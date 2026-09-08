@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Strand AC — Season Points (Two-column layout)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 56">
+<rect width="120" height="56" fill="#143B61"/>
+<text x="60" y="32" font-family="sans-serif" font-weight="900" font-size="16" fill="#F4E54D" text-anchor="middle">SAC</text>
+</svg>
+</template>
+<style>
+:root{
+/* base palette — extracted from STRAND AC brand manual */
+--navy-900:#143B61;
+--navy-700:#215A91;
+--teal-500:#3CB8BC;
+--teal-300:#5FCEC6;
+--teal-100:#B5E4E4;
+--sun-400:#F4E54D;
+--coral-500:#FF3536;
+--leaf-500:#37A245;
+--ink-900:#1E1C1D;
+--white:#FFFFFF;
+--balwin-red:#E51630;
+--balwin-green:#00983C;
+
+/* neutrals — derived tints of ink/navy for surfaces & text, since the manual defines no grey ramp */
+--grey-050:#F5F7F9;
+--grey-100:#E7ECF0;
+--grey-200:#D2DBE2;
+--grey-400:#9AABB8;
+--grey-600:#647684;
+--grey-800:#33424D;
+
+/* semantic aliases */
+--color-bg:var(--white);
+--color-surface:var(--grey-050);
+--color-surface-raised:var(--white);
+--color-border:var(--grey-200);
+--color-text-primary:var(--ink-900);
+--color-text-secondary:var(--grey-600);
+--color-text-on-brand:var(--white);
+--color-brand-primary:var(--navy-900);
+--color-brand-primary-hover:var(--navy-700);
+--color-accent-teal:var(--teal-500);
+--color-accent-sun:var(--sun-400);
+--color-accent-coral:var(--coral-500);
+--color-accent-leaf:var(--leaf-500);
+--color-link:var(--navy-700);
+--color-link-hover:var(--coral-500);
+--color-focus-ring:var(--teal-500);
+--color-success:var(--leaf-500);
+--color-warning:var(--sun-400);
+--color-danger:var(--coral-500);
+}
+
+body{margin:0;background:var(--grey-050);font-family:'Work Sans',sans-serif;padding:40px;display:flex;justify-content:center;}
+</style>
+</head>
+<body>
+<!-- OPTION 1b: women left / men right, ranked like results sheet -->
+    <div id="1b" style="width:900px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="background:var(--navy-900);color:var(--sun-400);font-family:'Archivo',sans-serif;font-weight:800;font-size:12px;padding:3px 10px;border-radius:100px;letter-spacing:0.03em;">1b</span>
+        <span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--grey-800);">Women left, men right — ranked lists like the results sheet</span>
+      </div>
+      <div class="sac-card" style="border:2px solid var(--teal-500);border-radius:20px;overflow:hidden;background:var(--white);box-shadow:var(--shadow-lg,0 10px 30px rgba(20,59,97,0.15));">
+        <div style="background:var(--navy-900);padding:24px 28px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:var(--navy-700);border-radius:100%;opacity:0.5;"></div>
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.08em;color:var(--sun-400);">STRAND ATHLETICS CLUB</div>
+          <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;color:var(--white);margin-top:4px;">Season Points</div>
+          <div style="display:inline-block;margin-top:10px;background:rgba(255,255,255,0.15);color:var(--white);font-family:'Work Sans',sans-serif;font-weight:600;font-size:12px;padding:4px 12px;border-radius:100px;">2026</div>
+          <div style="position:absolute;top:18px;right:24px;width:52px;height:52px;background:var(--white);border-radius:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+            <img src="assets/strand-ac-logo-round.png" style="width:44px;height:44px;object-fit:contain;" alt="Strand AC logo">
+          </div>
+        </div>
+        <div style="padding:24px 24px 28px;display:flex;gap:20px;">
+
+          <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid var(--grey-200);display:flex;flex-direction:column;">
+            <div style="background:var(--navy-900);padding:12px 18px;"><span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:var(--white);">Women</span></div>
+
+            <div style="background:var(--navy-700);padding:5px 18px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:11px;color:var(--white);letter-spacing:0.05em;">5KM</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--sun-400);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">1</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Pretty Bvute</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:800;font-size:13px;color:var(--navy-900);">32</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">2</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Wilna Eybers</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">23</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">3</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Michelle Van Der Watt</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">21</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">4</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Sharni Izaks</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">18</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">5</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Sarienne Fourie</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">15</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">6</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Caren Meiring</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">12</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">7</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Juna Zhang</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">8</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">8</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Helena Strydom</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">7</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">9</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Annelie Botha</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">6</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">10</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Zanele Mbeki</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">5</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">11</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Tanya Human</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">5</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">12</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Ronel Jacobs</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">4</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">13</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Lindie Swart</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">3</span></div>
+
+            <div style="background:var(--navy-700);padding:5px 18px;margin-top:2px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:11px;color:var(--white);letter-spacing:0.05em;">10KM</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--sun-400);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">1</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Elzabé Coetzee</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:800;font-size:13px;color:var(--navy-900);">6</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">2</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Amanda Peters</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">4</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">3</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Retha Snyman</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">2</span></div>
+          </div>
+
+          <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid var(--grey-200);display:flex;flex-direction:column;">
+            <div style="background:var(--teal-500);padding:12px 18px;"><span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:var(--white);">Men</span></div>
+
+            <div style="background:var(--navy-700);padding:5px 18px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:11px;color:var(--white);letter-spacing:0.05em;">5KM</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--sun-400);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">1</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Steven George</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:800;font-size:13px;color:var(--navy-900);">45</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">2</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Estiaan Diener</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">29</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">3</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Jacco Born</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">16</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">4</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Jandre Wichers</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">15</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">5</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Christie Engelbrecht</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">14</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">6</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Emile Van Zyl</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">13</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">7</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Marius Michiel du Toit</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">13</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">8</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Daryll Meyer</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">10</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">9</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Johan Kruger</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">9</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">10</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Sipho Nkosi</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">8</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">11</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Werner Botes</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">7</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">12</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Charl Pretorius</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">6</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">13</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Andre Fourie</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">5</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">14</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Bongani Zulu</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">4</span></div>
+
+            <div style="background:var(--navy-700);padding:5px 18px;margin-top:2px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:11px;color:var(--white);letter-spacing:0.05em;">10KM</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--sun-400);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">1</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Christie Engelbrecht</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:800;font-size:13px;color:var(--navy-900);">15</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">2</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Joseph Kandi</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">3</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--teal-100);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);width:16px;">3</span><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">Alexander Engelbrecht</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy-900);">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">4</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Jandre Wichers</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">5</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Pieter Coetzee</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--white);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">6</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Riaan Botha</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">1</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 18px;background:var(--grey-050);"><div style="display:flex;gap:14px;"><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--grey-600);width:16px;">7</span><span style="font-family:'Work Sans',sans-serif;font-size:13px;color:var(--ink-900);">Werner Smit</span></div><span style="font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink-900);">1</span></div>
+          </div>
+
+        </div>
+</body>
+</html>

@@ -59,6 +59,7 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
   const [activeDate, setActiveDate] = React.useState(null);
   const [active, setActive] = React.useState(null); // full race detail: {race_date, series_name, status, source_notes, entries}
   const [newDate, setNewDate] = React.useState('');
+  const [newStartTime, setNewStartTime] = React.useState('');
   const [rosterNames, setRosterNames] = React.useState([]);
   const [form, setForm] = React.useState({ name: '', gender: 'M', time: '', distance: '5KM' });
   const [statusMessage, setStatusMessage] = React.useState('');
@@ -157,9 +158,12 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
     if (!newDate) return;
     setStatusMessage('Creating race…');
     const date = newDate;
+    const body = { race_date: date };
+    if (newStartTime) body.race_start_time = newStartTime;
     try {
-      await api('/races', { method: 'POST', body: JSON.stringify({ race_date: date }) });
+      await api('/races', { method: 'POST', body: JSON.stringify(body) });
       setNewDate('');
+      setNewStartTime('');
       // POST /races invokes extraction asynchronously and returns before the
       // DynamoDB row exists - opening it immediately would 404. Set the
       // active date directly (not via openRace, which would surface that
@@ -280,6 +284,7 @@ function TimeTrialAdmin({ auth, onUnauthorized }) {
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, color: 'var(--navy-900)', marginBottom: 16 }}>Races</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginBottom: 18, flexWrap: 'wrap' }}>
           <div style={{ maxWidth: 220 }}><Input label="New race date" type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} /></div>
+          <div style={{ maxWidth: 160 }}><Input label="Start time (optional)" type="time" value={newStartTime} onChange={(e) => setNewStartTime(e.target.value)} /></div>
           <Button variant="secondary" size="md" onClick={createRace}>Create race (no photo)</Button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, border: '1.5px dashed var(--grey-200)', borderRadius: 'var(--radius-md)', padding: '10px 14px', background: 'var(--grey-050)' }}>
             <input ref={newRacePhotoInputRef} type="file" accept="image/*" onChange={onNewRacePhoto} style={{ display: 'none' }} />
